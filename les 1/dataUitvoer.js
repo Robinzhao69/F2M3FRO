@@ -1,5 +1,20 @@
 const uitvoer = document.getElementById('uitvoer');
 let dataObject;
+const jsonKnop = document.getElementById('haalJSON');
+const urlJson = 'https://gist.githubusercontent.com/Theo-denBlanken/193d989a2aab328f847f4357e7171dc5/raw/1ca3b05253dee0dac348b9ded4ada8a64d97ff5e/huisDataa.json';
+
+jsonKnop.addEventListener('click', () => {
+    jsonKnop.style.display = 'none';
+    const vraagServer = new XMLHttpRequest();
+    vraagServer.onreadystatechange = () => {
+        if( vraagServer.readyState==4 && vraagServer.status==200) {
+            dataObject = JSON.parse( vraagServer.responseText);
+            uitvoeren();
+        }
+    }
+    vraagServer.open('GET', urlJson, true);
+    vraagServer.send();
+})
 
 function geefDagWeek(num){
     switch (num){
@@ -35,6 +50,10 @@ function maandNaam(num){
 }
 
 function maakDatum(num){
+    if(typeof(num) == 'string') {
+        num = Date.parse(num);
+    }
+
     let datum = new Date(num);
 
     let dagWeek = datum.getDay();
