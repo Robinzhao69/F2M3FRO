@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>haal JSON boeken op</title>
+</head>
+<body>
+    <h1>haal JSON boeken op</h1> 
+    <script>
+        const url = "https://gist.githubusercontent.com/Theo-denBlanken/ed9551298618eb05ad01b838b3bf32b5/raw/c8c1fed36793bdd6fd69ba6ee815c263a61118c3/boekenTheo.json";
+        //callback functie
+        const verwerkdata = (obj) => {
+            let uitvoer = "";
+            obj.forEach( boek => {
+               uitvoer += `<img style="width: 100px" src="${boek.cover}" alt"${boek.titel}" >`
+            });
+            document.body.innerHTML = uitvoer;
+        }
+        // XMLHttpRequest object maken
+        const aanvraagServer = new XMLHttpRequest();
+        aanvraagServer.onreadystatechange = () => {
+           console.log(`readyState: ${aanvraagServer.readyState} status: ${aanvraagServer.status}`);
+            if( aanvraagServer.readyState==4 && aanvraagServer.status==200) {
+                console.log(aanvraagServer.responseText);
+                let data = JSON.parse(aanvraagServer.responseText);
+                console.log(data);
+                verwerkdata(data);
+            }
+        }
+
+        aanvraagServer.open('GET', url, true);
+        aanvraagServer.send();
+
+        // opdracht op het eind van het script
+         console.log('Dit wordt uitgevoerd NADAT send is verzonden.')
+    </script>
+</body>
+</html>
