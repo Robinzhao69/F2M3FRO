@@ -83,20 +83,20 @@ function uitvoeren(){
         html += `<div>${obj.tempBuiten} &deg;C</div>`
         html += `<div>${obj.tempBinnen} &deg;C</div>`
         html += `<div>${obj.tempGewenst} &deg;C</div>`
-        if( obj.tempGewenst > obj.tempBuiten ) {
+        if( obj.tempGewenst > obj.tempBinnen ) {
             html += `<div> <img class="icon" src="icons/vlam.svg" alt="CV aan"> </div>`
         } else{
-            html += `<div> <img class="icon" src="icons/vlamUit.svg" alt="CV uit"> </div>`
+            html += `<div> <img class="icon" src="icons/vlamUIt.svg" alt="CV uit"> </div>`
         }
         if( obj.lichtKamer) {
             html += `<div> <img class="icon" src="icons/lampAan.svg" alt="lamp aan"> </div>`
         } else{
-            html += `<div> <img class="icon" src="icons/lampUit.svg" alt="lampUit"> </div>`
+            html += `<div> <img class="icon" src="icons/lampUIt.svg" alt="lampUit"> </div>`
         }
         if( obj.lichtBuiten) {
             html += `<div> <img class="icon" src="icons/lampAan.svg" alt="lamp aan"> </div>`
         } else{
-            html += `<div> <img class="icon" src="icons/lampUit.svg" alt="lampUit"> </div>`
+            html += `<div> <img class="icon" src="icons/lampUIt.svg" alt="lampUit"> </div>`
         }
         
         html += "</div>"
